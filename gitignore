@@ -1,0 +1,16 @@
+build/
+ios/Flutter/
+ios/.generated/
+android/.gradle/
+android/app/build/
+*.iml
+*.hprof
+*.log
+*.bak
+*.swp
+.idea/
+*.ipr
+*.iws
+*.iml
+.vscode/
+.DS_Store
