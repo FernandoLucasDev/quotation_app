@@ -3,12 +3,25 @@ import 'package:provider/provider.dart';
 import 'package:quotation/data/api/exchange_api.dart';
 import 'package:quotation/domain/repositories/exchange_repositorie.dart';
 import 'package:quotation/services/quotation_service.dart';
+import 'package:quotation/utils/colors.dart';
 import 'package:quotation/view_model/quotation_view_model.dart';
 import 'package:quotation/views/quotation_screen.dart';
+import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
-class App extends StatelessWidget {
+class App extends StatefulWidget {
+  @override
+  State<App> createState() => _AppState();
+}
+
+class _AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
+
+    var currentIndex = 0;
+    Map<int, Widget> page = {
+      0: QuotationScreen(),
+    };
+
     return MultiProvider(
       providers: [
         Provider<ExchangeApi>(
@@ -33,7 +46,21 @@ class App extends StatelessWidget {
           useMaterial3: true,
         ),
         debugShowCheckedModeBanner: false,
-        home: QuotationScreen(),
+        home: Scaffold(
+            body: page[currentIndex],
+          bottomNavigationBar: SalomonBottomBar(
+            currentIndex: currentIndex,
+            onTap: (i) => setState(() => currentIndex = i),
+            backgroundColor: appBackgroundColor,
+            items: [
+              SalomonBottomBarItem(
+                icon: Icon(Icons.currency_exchange_outlined),
+                title: Text("Exchanges"),
+                selectedColor: btnBackgroundColor,
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
