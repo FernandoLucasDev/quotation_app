@@ -25,7 +25,7 @@ class CustomQuotation extends StatefulWidget {
 
 class _CustomQuotationState extends State<CustomQuotation> {
 
-  final _amountController = TextEditingController();
+  final _amountController = TextEditingController(text: "2");
 
   late String selectedCurrencyFrom;
   late String selectedCurrencyTo;
@@ -49,11 +49,10 @@ class _CustomQuotationState extends State<CustomQuotation> {
       isLoading = true;
     });
 
-    result =  await widget._service.getQuotation(selectedCurrencyFrom, selectedCurrencyTo);
+    result =  await widget._service.getQuotation(selectedCurrencyFrom, selectedCurrencyTo, amount: double.parse(_amountController.text));
 
     setState(() {
-      print(result);
-      bidValue = "${result["codein"]} ${formatToTwoDecimalPlaces(result["bid"])}";
+      bidValue = "${result["codein"]} ${formatToTwoDecimalPlaces(result["amount"].toString())}";
       isCurrencyValuating = result["isCurrencyValuating"];
       isLoading = false;
     });
@@ -223,7 +222,7 @@ class _CustomQuotationState extends State<CustomQuotation> {
                       child: Padding(
                         padding: const EdgeInsets.symmetric(vertical: 4.0),
                         child: Text(
-                          "Amount (optional):",
+                          "Amount:",
                           style: GoogleFonts.inter(
                             fontSize: 11,
                             color: secondaryTextColor,

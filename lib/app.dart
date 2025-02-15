@@ -4,7 +4,9 @@ import 'package:quotation/data/api/exchange_api.dart';
 import 'package:quotation/domain/repositories/exchange_repositorie.dart';
 import 'package:quotation/services/quotation_service.dart';
 import 'package:quotation/utils/colors.dart';
+import 'package:quotation/view_model/graphics_view_model.dart';
 import 'package:quotation/view_model/quotation_view_model.dart';
+import 'package:quotation/views/graphics_screen.dart';
 import 'package:quotation/views/quotation_screen.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
@@ -14,12 +16,15 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
+
+  var currentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
 
-    var currentIndex = 0;
     Map<int, Widget> page = {
       0: QuotationScreen(),
+      1: GraphicsScreen()
     };
 
     return MultiProvider(
@@ -32,6 +37,14 @@ class _AppState extends State<App> {
         ),
         ChangeNotifierProxyProvider<ExchangeRepository, QuotationViewModel>(
           create: (_) => QuotationViewModel(
+            service: QuotationService(
+              exchangeRepository: ExchangeRepository(api: ExchangeApi()),
+            ),
+          ),
+          update: (_, repository, model) => model!..updateRepository(repository),
+        ),
+        ChangeNotifierProxyProvider<ExchangeRepository, GraphicsViewModel>(
+          create: (_) => GraphicsViewModel(
             service: QuotationService(
               exchangeRepository: ExchangeRepository(api: ExchangeApi()),
             ),
@@ -54,8 +67,19 @@ class _AppState extends State<App> {
             backgroundColor: appBackgroundColor,
             items: [
               SalomonBottomBarItem(
-                icon: Icon(Icons.currency_exchange_outlined),
+                icon: Icon(
+                    Icons.currency_exchange_outlined,
+                    color: secondaryTextColor,
+                ),
                 title: Text("Exchanges"),
+                selectedColor: btnBackgroundColor,
+              ),
+              SalomonBottomBarItem(
+                icon: Icon(
+                    Icons.trending_up_outlined,
+                    color: secondaryTextColor
+                ),
+                title: Text("Graphics"),
                 selectedColor: btnBackgroundColor,
               ),
             ],

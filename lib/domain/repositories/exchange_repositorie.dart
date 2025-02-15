@@ -11,12 +11,7 @@ class ExchangeRepository {
     try {
 
       Map<String, dynamic> response = await _api.fetchExchangeRate(from, to);
-print(amount);
-      if(amount > 1.0) {
-        response['amount'] = double.parse(response['bid']) * amount;
-        print(response['amount']);
-      }
-
+      response['amount'] = double.parse(response['bid']) * amount;
       response['isCurrencyValuating'] = isValuating(response);
       return response;
 
