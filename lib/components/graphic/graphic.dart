@@ -7,7 +7,10 @@ import 'package:quotation/components/modals/custom_modal.dart';
 import 'package:quotation/utils/colors.dart';
 
 class GraphicComponent extends StatefulWidget {
-  const GraphicComponent({super.key});
+  GraphicComponent({super.key, this.dataList, required this.title, required this.isValuating});
+  final dataList;
+  String title;
+  Map<String, bool> isValuating;
 
   @override
   State<GraphicComponent> createState() => _GraphicComponentState();
@@ -177,7 +180,7 @@ class _GraphicComponentState extends State<GraphicComponent> {
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  "Graphics",
+                  widget.title,
                   style: GoogleFonts.inter(
                     fontSize: 24,
                     color: primaryTextColor,
@@ -186,9 +189,9 @@ class _GraphicComponentState extends State<GraphicComponent> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(bottom: 12.0, top: 12.0, left: 34.0),
+              padding: const EdgeInsets.only(bottom: 12.0, top: 12.0, left: 34.0, right: 34.0),
               child: Align(
-                alignment: Alignment.centerLeft,
+                alignment: Alignment.centerRight,
                 child: SizedBox(
                   height: 45.0,
                   child: SelectButton(
@@ -269,8 +272,9 @@ class _GraphicComponentState extends State<GraphicComponent> {
               child: Padding(
                 padding: const EdgeInsets.only(left: 34.0, right: 34.0, bottom: 12.0),
                 child: GraphicSkeleton(
-                  dataTest: dataMap,
+                  dataTest: widget.dataList,
                   daysForChart: selectedDays,
+                  isCurrencyValuation: widget.isValuating,
                 ),
               ),
             ),

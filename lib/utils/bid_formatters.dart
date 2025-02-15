@@ -9,6 +9,15 @@ bool isValuating(Map<String, dynamic>? data) {
   return (varBid != null && varBid > 0) && (pctChange != null && pctChange > 0);
 }
 
+Map<String, bool> isValuationByPeriod(List<dynamic> data) {
+  Map<String, bool> periodValuation = {
+    "5": double.parse(data[0]["bid"]) > double.parse(data[4]["bid"]),
+    "10": double.parse(data[0]["bid"]) > double.parse(data[9]["bid"]),
+    "15": double.parse(data[0]["bid"]) > double.parse(data[14]["bid"])
+  };
+  return periodValuation;
+}
+
 String formatBitcoinValue(String rawValue) {
   int? numericValue = int.tryParse(rawValue);
   if (numericValue == null) {

@@ -22,9 +22,9 @@ class GraphicsViewModel extends ChangeNotifier {
       isLoading = true;
       notifyListeners();
 
-      quotationUSD = await _service.getQuotation('USD', 'BRL');
-      quotationEUR = await _service.getQuotation('EUR', 'BRL');
-      quotationBTC = await _service.getQuotation('BTC', 'BRL');
+      quotationUSD = await _service.getQuotationInsidePeriod('USD', 'BRL');
+      quotationEUR = await _service.getQuotationInsidePeriod('EUR', 'BRL');
+      quotationBTC = await _service.getQuotationInsidePeriod('BTC', 'BRL');
 
     } catch (e) {
       debugPrint("Error fetching quotations: $e");
