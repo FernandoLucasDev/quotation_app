@@ -28,7 +28,7 @@ class SelectButton extends StatelessWidget {
         children: [
           Icon(Icons.calendar_month_outlined, color: primaryTextColor),
           SizedBox(width: 5.0),
-          Text("$days"),
+          Text("$days days"),
           SizedBox(width: 5.0),
           Icon(Icons.arrow_drop_down, color: primaryTextColor),
         ],

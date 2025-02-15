@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:quotation/components/common/app_loader.dart';
 import 'package:quotation/components/common/header.dart';
 import 'package:quotation/components/graphic/graphic.dart';
 import 'package:quotation/data/api/exchange_api.dart';
@@ -34,7 +35,6 @@ class _GraphicsScreenState extends State<GraphicsScreen> {
     final exchangeRepository = ExchangeRepository(api: ExchangeApi());
     final quotationService = QuotationService(exchangeRepository: exchangeRepository);
 
-
     return Scaffold(
       backgroundColor: appBackgroundColor,
       body: RefreshIndicator(
@@ -42,7 +42,14 @@ class _GraphicsScreenState extends State<GraphicsScreen> {
         child: ListView(
             children: [
             Header(),
-            GraphicComponent(),
+            viewModel.isLoading ?
+                AppLoader() : Column(
+                  children: [
+                    GraphicComponent(dataList: viewModel.quotationUSD, title: "Dollar [USD]", isValuating: viewModel.quotationUSD[0]["isCurrencyValuating"]),
+                    GraphicComponent(dataList: viewModel.quotationEUR, title: "Euro [EUR]", isValuating: viewModel.quotationEUR[0]["isCurrencyValuating"]),
+                    GraphicComponent(dataList: viewModel.quotationBTC, title: "Bitcoin [BTC]", isValuating: viewModel.quotationBTC[0]["isCurrencyValuating"]),
+                  ],
+                ),
         ]
         )
       ),

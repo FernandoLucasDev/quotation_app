@@ -14,4 +14,14 @@ class QuotationService {
       throw Exception('ERROR:::QuotationService::getQuotation: $e');
     }
   }
+
+  Future<List<dynamic>> getQuotationInsidePeriod(String from, String to, {String days = "15"}) async {
+    try {
+      var response = await _exchangeRepository.getExchangeByPeriod(from, to, days);
+      return response;
+    } catch(e) {
+      print("1");
+      throw Exception('ERROR:::QuotationService::getQuotationInsidePeriod: $e');
+    }
+  }
 }
