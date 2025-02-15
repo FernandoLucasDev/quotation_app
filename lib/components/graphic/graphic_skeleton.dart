@@ -83,7 +83,7 @@ class GraphicSkeleton extends StatelessWidget {
           lineBarsData: [
             LineChartBarData(
               spots: spots,
-              isCurved: true,
+              isCurved: false,
               color: (isCurrencyValuation[daysForChart.toString()] ?? true) ? upTextColor : downTextColor,
               barWidth: 3,
               belowBarData: BarAreaData(
