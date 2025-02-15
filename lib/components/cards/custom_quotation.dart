@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:quotation/components/buttons/currency_button.dart';
 import 'package:quotation/components/common/app_loader.dart';
 import 'package:quotation/components/forms/text_input.dart';
@@ -25,7 +24,7 @@ class CustomQuotation extends StatefulWidget {
 
 class _CustomQuotationState extends State<CustomQuotation> {
 
-  final _amountController = TextEditingController(text: "2");
+  final _amountController = TextEditingController(text: "1");
 
   late String selectedCurrencyFrom;
   late String selectedCurrencyTo;
