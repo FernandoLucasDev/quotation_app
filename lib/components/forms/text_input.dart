@@ -32,7 +32,7 @@ class TextInputCustom extends StatelessWidget {
         keyboardType: isNumber ? TextInputType.number : TextInputType.text,
         inputFormatters: isNumber
             ? [
-          FilteringTextInputFormatter.allow(RegExp(r'^\d*[,]?\d{0,2}')),
+          FilteringTextInputFormatter.allow(RegExp(r'^\d*\.?\d{0,2}$')),
         ]
             : [],
         decoration: InputDecoration(
@@ -53,15 +53,19 @@ class TextInputCustom extends StatelessWidget {
           if (value == null || value.isEmpty) {
             return errorMsg;
           }
+
           if (isNumber) {
             final sanitizedValue = value.replaceAll(',', '.');
             final numberValue = double.tryParse(sanitizedValue);
+
             if (numberValue == null) {
               return 'Digite um número válido';
-            } else if (!RegExp(r'^\d+(\.\d{1,2})?$').hasMatch(sanitizedValue)) {
+            }
+            if (!RegExp(r'^\d+(\.\d{1,2})?$').hasMatch(sanitizedValue)) {
               return 'Apenas duas casas decimais são permitidas';
             }
           }
+
           return null;
         },
       ),
