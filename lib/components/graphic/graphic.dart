@@ -12,15 +12,14 @@ import 'package:quotation/utils/colors.dart';
 import 'package:quotation/utils/currencies.dart';
 
 class GraphicComponent extends StatefulWidget {
-  GraphicComponent({super.key, this.dataList, required this.title, required this.isValuating, this.selectedCurrencyFrom = "USD", this.selectedCurrencyTo = "BRL", required QuotationService service}) : _service = service;
+  GraphicComponent({super.key, required this.isCustomData, required this.dataList, required this.title, required this.isValuating, required QuotationService service}) : _service = service;
 
   late QuotationService _service;
 
-  final dataList;
-  String selectedCurrencyFrom;
-  String selectedCurrencyTo;
+  List<dynamic> dataList;
   String title;
   Map<String, bool> isValuating;
+  bool isCustomData;
 
   @override
   State<GraphicComponent> createState() => _GraphicComponentState();
@@ -30,8 +29,11 @@ class _GraphicComponentState extends State<GraphicComponent> {
 
   int selectedDays = 5;
   bool isLoading = false;
+  bool showGraphic = false;
   late bool isCurrencyValuating;
   String? bidValue;
+  String selectedCurrencyFrom = "USD";
+  String selectedCurrencyTo = "BRL";
 
   dynamic result;
 
@@ -41,11 +43,13 @@ class _GraphicComponentState extends State<GraphicComponent> {
       isLoading = true;
     });
 
-    result =  await widget._service.getQuotationInsidePeriod(widget.selectedCurrencyFrom, widget.selectedCurrencyTo);
+    result =  await widget._service.getQuotationInsidePeriod(selectedCurrencyFrom, selectedCurrencyTo);
 
     setState(() {
-      isCurrencyValuating = result[0]["isCurrencyValuating"];
+      isCurrencyValuating = result[0]["isCurrencyValuating"][selectedDays.toString()];
+      widget.dataList = result;
       isLoading = false;
+      showGraphic = true;
     });
   }
 
@@ -55,7 +59,7 @@ class _GraphicComponentState extends State<GraphicComponent> {
       padding: EdgeInsets.symmetric(horizontal: 35.0, vertical: 10.0),
       child: Container(
         width: double.infinity,
-        height: 400.0,
+        height: widget.isCustomData ? 500.0 : 440,
         decoration: BoxDecoration(
           color: containerBackground,
           borderRadius: BorderRadius.all(Radius.circular(20.0)),
@@ -75,7 +79,8 @@ class _GraphicComponentState extends State<GraphicComponent> {
                 ),
               ),
             ),
-            Padding(
+            if(widget.isCustomData)
+              Padding(
               padding: const EdgeInsets.only(left: 34.0, right: 34.0, top: 10.0),
               child: Row(
                 children: [
@@ -91,7 +96,7 @@ class _GraphicComponentState extends State<GraphicComponent> {
                       ),
                       SizedBox(height: 5.0),
                       CurrencyButton(
-                        currency: widget.selectedCurrencyFrom,
+                        currency: selectedCurrencyFrom,
                         onPressed: () {
                           CustomModal.show(
                             context: context,
@@ -111,10 +116,10 @@ class _GraphicComponentState extends State<GraphicComponent> {
                                           ),
                                         ),
                                         value: entry.key,
-                                        groupValue: widget.selectedCurrencyFrom,
+                                        groupValue: selectedCurrencyFrom,
                                         onChanged: (value) {
                                           setState(() {
-                                            widget.selectedCurrencyFrom = value!;
+                                            selectedCurrencyFrom = value!;
                                           });
                                           Navigator.pop(context);
                                         },
@@ -142,7 +147,7 @@ class _GraphicComponentState extends State<GraphicComponent> {
                       ),
                       SizedBox(height: 5.0),
                       CurrencyButton(
-                        currency: widget.selectedCurrencyTo,
+                        currency: selectedCurrencyTo,
                         onPressed: () {
                           CustomModal.show(
                             context: context,
@@ -162,10 +167,10 @@ class _GraphicComponentState extends State<GraphicComponent> {
                                           ),
                                         ),
                                         value: entry.key,
-                                        groupValue: widget.selectedCurrencyTo,
+                                        groupValue: selectedCurrencyTo,
                                         onChanged: (value) {
                                           setState(() {
-                                            widget.selectedCurrencyTo = value!;
+                                            selectedCurrencyTo = value!;
                                           });
                                           Navigator.pop(context);
                                         },
@@ -282,6 +287,7 @@ class _GraphicComponentState extends State<GraphicComponent> {
                 ),
               ),
             ),
+            // if((widget.isCustomData ?? false)  && (!widget.isCustomData ?? ))
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.only(left: 34.0, right: 34.0, bottom: 12.0),
