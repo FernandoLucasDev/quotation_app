@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quotation/components/common/app_loader.dart';
 import 'package:quotation/components/common/header.dart';
+import 'package:quotation/components/common/titled_separator.dart';
 import 'package:quotation/components/graphic/graphic.dart';
 import 'package:quotation/data/api/exchange_api.dart';
 import 'package:quotation/domain/repositories/exchange_repositorie.dart';
@@ -41,13 +42,15 @@ class _GraphicsScreenState extends State<GraphicsScreen> {
         onRefresh: _refresh,
         child: ListView(
             children: [
-            Header(),
-            viewModel.isLoading ?
+              Header(),
+              const TitledSeparator(title: "Graphics"),
+              viewModel.isLoading ?
                 AppLoader() : Column(
                   children: [
-                    GraphicComponent(dataList: viewModel.quotationUSD, title: "Dollar [USD]", isValuating: viewModel.quotationUSD[0]["isCurrencyValuating"]),
-                    GraphicComponent(dataList: viewModel.quotationEUR, title: "Euro [EUR]", isValuating: viewModel.quotationEUR[0]["isCurrencyValuating"]),
-                    GraphicComponent(dataList: viewModel.quotationBTC, title: "Bitcoin [BTC]", isValuating: viewModel.quotationBTC[0]["isCurrencyValuating"]),
+                    GraphicComponent(dataList: viewModel.quotationUSD, title: "Search", isValuating: viewModel.quotationUSD[0]["isCurrencyValuating"], service: quotationService, isCustomData: true,),
+                    GraphicComponent(dataList: viewModel.quotationUSD, title: "Dollar [USD]", isValuating: viewModel.quotationUSD[0]["isCurrencyValuating"], service: quotationService, isCustomData: false,),
+                    GraphicComponent(dataList: viewModel.quotationEUR, title: "Euro [EUR]", isValuating: viewModel.quotationEUR[0]["isCurrencyValuating"], service: quotationService, isCustomData: false,),
+                    GraphicComponent(dataList: viewModel.quotationBTC, title: "Bitcoin [BTC]", isValuating: viewModel.quotationBTC[0]["isCurrencyValuating"], service: quotationService, isCustomData: false,),
                   ],
                 ),
         ]

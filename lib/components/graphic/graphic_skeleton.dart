@@ -5,18 +5,18 @@ import 'package:quotation/utils/bid_formatters.dart';
 import 'package:quotation/utils/colors.dart';
 
 class GraphicSkeleton extends StatelessWidget {
-  List<dynamic> dataTest;
+  List<dynamic> dataForChart;
   final int daysForChart;
   final Map<String, bool> isCurrencyValuation;
 
-  GraphicSkeleton({super.key, required this.dataTest, required this.daysForChart, required this.isCurrencyValuation});
+  GraphicSkeleton({super.key, required this.dataForChart, required this.daysForChart, required this.isCurrencyValuation});
 
   List<dynamic>  getFilteredData() {
-    dataTest = dataTest.reversed.toList();
+    dataForChart = dataForChart.reversed.toList();
     if (daysForChart == 1) {
-      return [dataTest.first];
+      return [dataForChart.first];
     }
-    return dataTest.sublist(dataTest.length - daysForChart).toList();
+    return dataForChart.sublist(dataForChart.length - daysForChart).toList();
   }
 
   String formatTimestamp(String timestamp) {
@@ -32,7 +32,6 @@ class GraphicSkeleton extends StatelessWidget {
       final data = entry.value;
       return FlSpot(index.toDouble(), double.parse(data['bid']));
     }).toList();
-
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
       child: LineChart(
@@ -71,7 +70,7 @@ class GraphicSkeleton extends StatelessWidget {
                   return Padding(
                     padding: const EdgeInsets.only(left: 1.0),
                     child: Text(
-                      value.toStringAsFixed(2).substring(0, 3),
+                      dataForChart[14]["code"] == "BTC" ? value.toStringAsFixed(2).substring(0, 3) : value.toStringAsFixed(2),
                       style: const TextStyle(color: Colors.white, fontSize: 10),
                     ),
                   );
@@ -83,7 +82,7 @@ class GraphicSkeleton extends StatelessWidget {
           lineBarsData: [
             LineChartBarData(
               spots: spots,
-              isCurved: true,
+              isCurved: false,
               color: (isCurrencyValuation[daysForChart.toString()] ?? true) ? upTextColor : downTextColor,
               barWidth: 3,
               belowBarData: BarAreaData(
