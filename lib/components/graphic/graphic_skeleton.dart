@@ -33,7 +33,7 @@ class GraphicSkeleton extends StatelessWidget {
       return FlSpot(index.toDouble(), double.parse(data['bid']));
     }).toList();
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      padding: const EdgeInsets.symmetric(horizontal: 4.0),
       child: LineChart(
         LineChartData(
           gridData: const FlGridData(show: false),
@@ -70,7 +70,7 @@ class GraphicSkeleton extends StatelessWidget {
                   return Padding(
                     padding: const EdgeInsets.only(left: 1.0),
                     child: Text(
-                      dataForChart[14]["code"] == "BTC" ? value.toStringAsFixed(2).substring(0, 3) : value.toStringAsFixed(2),
+                      value.toStringAsFixed(2).split(".")[0].length == 1 ? value.toStringAsFixed(2) : value.toStringAsFixed(2).substring(0, 3),
                       style: const TextStyle(color: Colors.white, fontSize: 10),
                     ),
                   );

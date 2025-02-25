@@ -59,7 +59,7 @@ class _GraphicComponentState extends State<GraphicComponent> {
       padding: EdgeInsets.symmetric(horizontal: 35.0, vertical: 10.0),
       child: Container(
         width: double.infinity,
-        height: widget.isCustomData ? 500.0 : 440,
+        height: widget.isCustomData ? 460.0 : 400,
         decoration: BoxDecoration(
           color: containerBackground,
           borderRadius: BorderRadius.all(Radius.circular(20.0)),

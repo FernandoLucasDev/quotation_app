@@ -17,14 +17,16 @@ class App extends StatefulWidget {
 
 class _AppState extends State<App> {
 
-  var currentIndex = 0;
+  var currentIndex = 1;
 
   @override
   Widget build(BuildContext context) {
 
     Map<int, Widget> page = {
-      0: QuotationScreen(),
-      1: GraphicsScreen()
+      0: GraphicsScreen(),
+      1: QuotationScreen(),
+      2: GraphicsScreen(),
+      3: QuotationScreen(),
     };
 
     return MultiProvider(
@@ -55,7 +57,7 @@ class _AppState extends State<App> {
       child: MaterialApp(
         title: 'Quotation App',
         theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          colorScheme: ColorScheme.fromSeed(seedColor: primaryTextColor),
           useMaterial3: true,
         ),
         debugShowCheckedModeBanner: false,
@@ -66,6 +68,14 @@ class _AppState extends State<App> {
             onTap: (i) => setState(() => currentIndex = i),
             backgroundColor: appBackgroundColor,
             items: [
+              SalomonBottomBarItem(
+                icon: Icon(
+                  Icons.newspaper_outlined,
+                  color: secondaryTextColor,
+                ),
+                title: Text("News"),
+                selectedColor: btnBackgroundColor,
+              ),
               SalomonBottomBarItem(
                 icon: Icon(
                     Icons.currency_exchange_outlined,
@@ -80,6 +90,14 @@ class _AppState extends State<App> {
                     color: secondaryTextColor
                 ),
                 title: Text("Graphics"),
+                selectedColor: btnBackgroundColor,
+              ),
+              SalomonBottomBarItem(
+                icon: Icon(
+                    Icons.manage_accounts_outlined,
+                    color: secondaryTextColor
+                ),
+                title: Text("Settings"),
                 selectedColor: btnBackgroundColor,
               ),
             ],
