@@ -68,7 +68,7 @@ class CurrencyCard extends StatelessWidget {
                 ),
                 Padding(
                   padding: EdgeInsets.only(
-                      left: 34.0, top: 8.0
+                      left: 34.0, top: 8.0, right: 34.0
                   ),
                   child: Align(
                     alignment: Alignment.centerLeft,
@@ -85,16 +85,32 @@ class CurrencyCard extends StatelessWidget {
                             ),
                           ),
                         ),
-                        Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            "Max: R\$$max",
-                            style: GoogleFonts.inter(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w600,
-                                color: secondaryTextColor
+                        Row(
+                          children: [
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                "Max: R\$$max",
+                                style: GoogleFonts.inter(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w600,
+                                    color: secondaryTextColor
+                                ),
+                              ),
                             ),
-                          ),
+                            Spacer(),
+                            Align(
+                              alignment: Alignment.centerRight,
+                              child: Text(
+                                "Today",
+                                style: GoogleFonts.inter(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w600,
+                                    color: secondaryTextColor
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),

@@ -57,29 +57,33 @@ class _QuotationScreenState extends State<QuotationScreen> {
                     selectedCurrencyTo: "BRL",
                     service: quotationService,
                   ),
-                  CurrencyCard(
-                    currency: "US Dollar [USD]",
-                    bid: formatToTwoDecimalPlaces(viewModel.quotationUSD['bid']),
-                    max: formatToTwoDecimalPlaces(viewModel.quotationUSD['high']),
-                    min: formatToTwoDecimalPlaces(viewModel.quotationUSD['low']),
-                    isValuating: viewModel.quotationUSD['isCurrencyValuating'],
-                  ),
-                  CurrencyCard(
-                    currency: "Euro [EUR]",
-                    bid: formatToTwoDecimalPlaces(viewModel.quotationEUR['bid']),
-                    max: formatToTwoDecimalPlaces(viewModel.quotationEUR['high']),
-                    min: formatToTwoDecimalPlaces(viewModel.quotationEUR['low']),
-                    isValuating: viewModel.quotationEUR['isCurrencyValuating'],
-                  ),
-                  CurrencyCard(
-                    currency: "Bitcoin [BTC]",
-                    bid: formatBitcoinValue(viewModel.quotationBTC['bid']),
-                    max: formatBitcoinValue(viewModel.quotationBTC['high']),
-                    min: formatBitcoinValue(viewModel.quotationBTC['low']),
-                    isValuating: viewModel.quotationBTC['isCurrencyValuating'],
-                  ),
+                  if (viewModel.quotationUSD != null)
+                    CurrencyCard(
+                      currency: "US Dollar [USD]",
+                      bid: formatToTwoDecimalPlaces(viewModel.quotationUSD?['bid'] ?? 0.0),
+                      max: formatToTwoDecimalPlaces(viewModel.quotationUSD?['high'] ?? 0.0),
+                      min: formatToTwoDecimalPlaces(viewModel.quotationUSD?['low'] ?? 0.0),
+                      isValuating: viewModel.quotationUSD?['isCurrencyValuating'] ?? false,
+                    ),
+                  if (viewModel.quotationEUR != null)
+                    CurrencyCard(
+                      currency: "Euro [EUR]",
+                      bid: formatToTwoDecimalPlaces(viewModel.quotationEUR?['bid'] ?? 0.0),
+                      max: formatToTwoDecimalPlaces(viewModel.quotationEUR?['high'] ?? 0.0),
+                      min: formatToTwoDecimalPlaces(viewModel.quotationEUR?['low'] ?? 0.0),
+                      isValuating: viewModel.quotationEUR?['isCurrencyValuating'] ?? false,
+                    ),
+                  if (viewModel.quotationBTC != null)
+                    CurrencyCard(
+                      currency: "Bitcoin [BTC]",
+                      bid: formatBitcoinValue(viewModel.quotationBTC?['bid'] ?? 0.0),
+                      max: formatBitcoinValue(viewModel.quotationBTC?['high'] ?? 0.0),
+                      min: formatBitcoinValue(viewModel.quotationBTC?['low'] ?? 0.0),
+                      isValuating: viewModel.quotationBTC?['isCurrencyValuating'] ?? false,
+                    ),
                 ],
               )
+
             else
               const Text(
                 'No data at the moment',

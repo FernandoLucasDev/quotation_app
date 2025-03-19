@@ -16,7 +16,7 @@ class GraphicComponent extends StatefulWidget {
 
   late QuotationService _service;
 
-  List<dynamic> dataList;
+  List<Object> dataList;
   String title;
   Map<String, bool> isValuating;
   bool isCustomData;
@@ -55,11 +55,12 @@ class _GraphicComponentState extends State<GraphicComponent> {
 
   @override
   Widget build(BuildContext context) {
+
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 35.0, vertical: 10.0),
       child: Container(
         width: double.infinity,
-        height: widget.isCustomData ? 500.0 : 440,
+        height: widget.isCustomData ? 460.0 : 400,
         decoration: BoxDecoration(
           color: containerBackground,
           borderRadius: BorderRadius.all(Radius.circular(20.0)),
@@ -254,7 +255,6 @@ class _GraphicComponentState extends State<GraphicComponent> {
                                       onChanged: (value) {
                                         setState(() {
                                           selectedDays = value!;
-                                          print(selectedDays);
                                         });
                                       },
                                     ),
@@ -271,7 +271,38 @@ class _GraphicComponentState extends State<GraphicComponent> {
                                       onChanged: (value) {
                                         setState(() {
                                           selectedDays = value!;
-                                          print(selectedDays);
+                                        });
+                                      },
+                                    ),
+                                    RadioListTile(
+                                      title: Text(
+                                        '30 dias',
+                                        style: GoogleFonts.inter(
+                                          fontSize: 14,
+                                          color: primaryTextColor,
+                                        ),
+                                      ),
+                                      value: 30,
+                                      groupValue: selectedDays,
+                                      onChanged: (value) {
+                                        setState(() {
+                                          selectedDays = value!;
+                                        });
+                                      },
+                                    ),
+                                    RadioListTile(
+                                      title: Text(
+                                        '45 dias',
+                                        style: GoogleFonts.inter(
+                                          fontSize: 14,
+                                          color: primaryTextColor,
+                                        ),
+                                      ),
+                                      value: 45,
+                                      groupValue: selectedDays,
+                                      onChanged: (value) {
+                                        setState(() {
+                                          selectedDays = value!;
                                         });
                                       },
                                     ),
