@@ -1,4 +1,5 @@
 import 'package:quotation/domain/repositories/exchange_repositorie.dart';
+import 'package:quotation/data/models/quotation_model.dart';
 
 class QuotationService {
   final ExchangeRepository _exchangeRepository;
@@ -8,20 +9,20 @@ class QuotationService {
 
   Future<Map<String, dynamic>> getQuotation(String from, String to, {double amount = 1.0}) async {
     try {
-      var response = await _exchangeRepository.getExchangeRate(from, to, amount: amount);
-      return response;
+      Currency response = await _exchangeRepository.getExchangeRate(from, to, amount: amount);
+      return response.toJson();
     } catch (e) {
       throw Exception('ERROR:::QuotationService::getQuotation: $e');
     }
   }
 
-  Future<List<dynamic>> getQuotationInsidePeriod(String from, String to, {String days = "15"}) async {
+  Future<List<Map<String, dynamic>>> getQuotationInsidePeriod(String from, String to, {String days = "45"}) async {
     try {
-      var response = await _exchangeRepository.getExchangeByPeriod(from, to, days);
-      return response;
-    } catch(e) {
-      print("1");
+      List<Currency> response = await _exchangeRepository.getExchangeByPeriod(from, to, days);
+      return response.map((c) => c.toJson()).toList();
+    } catch (e) {
       throw Exception('ERROR:::QuotationService::getQuotationInsidePeriod: $e');
     }
   }
+
 }

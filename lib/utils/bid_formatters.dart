@@ -13,7 +13,9 @@ Map<String, bool> isValuationByPeriod(List<dynamic> data) {
   Map<String, bool> periodValuation = {
     "5": double.parse(data[0]["bid"]) > double.parse(data[4]["bid"]),
     "10": double.parse(data[0]["bid"]) > double.parse(data[9]["bid"]),
-    "15": double.parse(data[0]["bid"]) > double.parse(data[14]["bid"])
+    "15": double.parse(data[0]["bid"]) > double.parse(data[14]["bid"]),
+    "30": double.parse(data[0]["bid"]) > double.parse(data[29]["bid"]),
+    "45": double.parse(data[0]["bid"]) > double.parse(data[44]["bid"])
   };
   return periodValuation;
 }

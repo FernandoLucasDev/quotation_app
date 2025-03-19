@@ -6,9 +6,9 @@ class QuotationViewModel extends ChangeNotifier {
   late QuotationService _service;
 
   bool isLoading = true;
-  dynamic quotationUSD;
-  dynamic quotationEUR;
-  dynamic quotationBTC;
+  Map<String, dynamic>? quotationUSD;
+  Map<String, dynamic>? quotationEUR;
+  Map<String, dynamic>? quotationBTC;
 
   QuotationViewModel({required QuotationService service}) : _service = service;
 

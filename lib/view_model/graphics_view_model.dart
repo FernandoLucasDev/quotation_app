@@ -6,9 +6,9 @@ class GraphicsViewModel extends ChangeNotifier {
   late QuotationService _service;
 
   bool isLoading = true;
-  dynamic quotationUSD;
-  dynamic quotationEUR;
-  dynamic quotationBTC;
+  List<Map<String, dynamic>>? quotationUSD;
+  List<Map<String, dynamic>>? quotationEUR;
+  List<Map<String, dynamic>>? quotationBTC;
 
   GraphicsViewModel({required QuotationService service}) : _service = service;
 
