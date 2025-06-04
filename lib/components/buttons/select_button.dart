@@ -5,7 +5,7 @@ class SelectButton extends StatelessWidget {
   final VoidCallback onPressed;
   final int days;
 
-  const SelectButton({Key? key, required this.onPressed, required this.days}) : super(key: key);
+  const SelectButton({super.key, required this.onPressed, required this.days});
 
   @override
   Widget build(BuildContext context) {

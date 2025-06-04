@@ -43,6 +43,7 @@ dependencies:
   provider: ^6.1.2
   salomon_bottom_bar: ^3.3.2
   fl_chart: ^0.70.2
+  flutter_app_widget: ^0.0.2
 
 flutter_launcher_icons:
   android: true

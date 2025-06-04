@@ -11,7 +11,7 @@ class Currency {
   final int timestamp;
   final String? createDate;
   final String? amount;
-  final dynamic? isCurrencyValuating;
+  final dynamic isCurrencyValuating;
 
   Currency({
     this.code,

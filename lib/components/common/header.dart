@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:quotation/utils/colors.dart';
 
 class Header extends StatelessWidget {
-  Header ({super.key});
+  const Header ({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -36,8 +36,6 @@ class _GraphicsScreenState extends State<GraphicsScreen> {
     final exchangeRepository = ExchangeRepository(api: ExchangeApi());
     final quotationService = QuotationService(exchangeRepository: exchangeRepository);
 
-    print(viewModel.quotationUSD);
-
     return Scaffold(
       backgroundColor: appBackgroundColor,
       body: RefreshIndicator(

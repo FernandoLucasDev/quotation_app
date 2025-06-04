@@ -11,6 +11,8 @@ import 'package:quotation/views/quotation_screen.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 class App extends StatefulWidget {
+  const App({super.key});
+
   @override
   State<App> createState() => _AppState();
 }

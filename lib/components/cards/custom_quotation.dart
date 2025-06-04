@@ -14,7 +14,7 @@ import 'package:quotation/utils/currencies.dart';
 class CustomQuotation extends StatefulWidget {
   CustomQuotation({super.key, required this.selectedCurrencyFrom, required this.selectedCurrencyTo, required QuotationService service}) : _service = service;
 
-  late QuotationService _service;
+  late final QuotationService _service;
   final String selectedCurrencyFrom;
   final String selectedCurrencyTo;
 
@@ -24,7 +24,7 @@ class CustomQuotation extends StatefulWidget {
 
 class _CustomQuotationState extends State<CustomQuotation> {
 
-  final _amountController = TextEditingController(text: "1");
+  final _amountController = TextEditingController();
 
   late String selectedCurrencyFrom;
   late String selectedCurrencyTo;
@@ -43,6 +43,8 @@ class _CustomQuotationState extends State<CustomQuotation> {
   }
 
   Future<void> fetchQuotation(ExchangeRepository repository) async {
+
+    print("1");
 
     setState(() {
       isLoading = true;

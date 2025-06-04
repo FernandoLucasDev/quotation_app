@@ -1,7 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:quotation/utils/bid_formatters.dart';
 import 'package:quotation/utils/colors.dart';
 
 class GraphicSkeleton extends StatelessWidget {

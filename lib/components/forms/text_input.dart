@@ -11,14 +11,14 @@ class TextInputCustom extends StatelessWidget {
   final bool isNumber;
 
   const TextInputCustom({
-    Key? key,
+    super.key,
     required this.inputKey,
     required this.errorMsg,
     required this.textHint,
     required this.borderRadius,
     required this.sensitive,
     this.isNumber = false,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

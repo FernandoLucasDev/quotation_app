@@ -5,7 +5,7 @@ class CurrencyButton extends StatelessWidget {
   final VoidCallback onPressed;
   final currency;
 
-  const CurrencyButton({Key? key, required this.onPressed, this.currency}) : super(key: key);
+  const CurrencyButton({super.key, required this.onPressed, this.currency});
 
   @override
   Widget build(BuildContext context) {

@@ -14,7 +14,7 @@ import 'package:quotation/utils/currencies.dart';
 class GraphicComponent extends StatefulWidget {
   GraphicComponent({super.key, required this.isCustomData, required this.dataList, required this.title, required this.isValuating, required QuotationService service}) : _service = service;
 
-  late QuotationService _service;
+  late final QuotationService _service;
 
   List<Object> dataList;
   String title;
@@ -238,7 +238,6 @@ class _GraphicComponentState extends State<GraphicComponent> {
                                       onChanged: (value) {
                                         setState(() {
                                           selectedDays = value!;
-                                          print(selectedDays);
                                         });
                                       },
                                     ),
