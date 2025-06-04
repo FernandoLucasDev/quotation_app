@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quotation/domain/repositories/exchange_repositorie.dart';
+import 'package:quotation/domain/repositories/exchange_repository.dart';
 import 'package:quotation/services/quotation_service.dart';
 
 class QuotationViewModel extends ChangeNotifier {

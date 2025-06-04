@@ -5,7 +5,7 @@ import 'package:quotation/components/buttons/select_button.dart';
 import 'package:quotation/components/graphic/graphic_skeleton.dart';
 import 'package:quotation/components/modals/custom_modal.dart';
 import 'package:quotation/data/api/exchange_api.dart';
-import 'package:quotation/domain/repositories/exchange_repositorie.dart';
+import 'package:quotation/domain/repositories/exchange_repository.dart';
 import 'package:quotation/services/quotation_service.dart';
 import 'package:quotation/utils/bid_formatters.dart';
 import 'package:quotation/utils/colors.dart';

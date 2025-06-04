@@ -5,7 +5,7 @@ import 'package:quotation/components/common/header.dart';
 import 'package:quotation/components/common/titled_separator.dart';
 import 'package:quotation/components/graphic/graphic.dart';
 import 'package:quotation/data/api/exchange_api.dart';
-import 'package:quotation/domain/repositories/exchange_repositorie.dart';
+import 'package:quotation/domain/repositories/exchange_repository.dart';
 import 'package:quotation/services/quotation_service.dart';
 import 'package:quotation/utils/colors.dart';
 import 'package:quotation/view_model/graphics_view_model.dart';

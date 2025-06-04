@@ -1,10 +1,11 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:quotation/config.dart';
 
 class ExchangeApi {
   final String baseUrl;
 
-  ExchangeApi({this.baseUrl = 'https://economia.awesomeapi.com.br/json/'});
+  ExchangeApi({this.baseUrl = awesomeApiUrl});
 
   Future<List<Map<String, dynamic>>> fetchExchangeByPeriod(String from, String to, String days) async {
     final url = Uri.parse('${baseUrl}daily/$from-$to/$days');

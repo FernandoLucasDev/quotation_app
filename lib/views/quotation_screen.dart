@@ -6,7 +6,7 @@ import 'package:quotation/components/cards/currency_card.dart';
 import 'package:quotation/components/cards/custom_quotation.dart';
 import 'package:quotation/components/common/titled_separator.dart';
 import 'package:quotation/data/api/exchange_api.dart';
-import 'package:quotation/domain/repositories/exchange_repositorie.dart';
+import 'package:quotation/domain/repositories/exchange_repository.dart';
 import 'package:quotation/services/quotation_service.dart';
 import 'package:quotation/utils/bid_formatters.dart';
 import 'package:quotation/utils/colors.dart';

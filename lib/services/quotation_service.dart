@@ -1,4 +1,4 @@
-import 'package:quotation/domain/repositories/exchange_repositorie.dart';
+import 'package:quotation/domain/repositories/exchange_repository.dart';
 import 'package:quotation/data/models/quotation_model.dart';
 
 class QuotationService {
